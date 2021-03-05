@@ -3,20 +3,33 @@ import './Restaurants.css'
 
 // const API_KEY = process.env.REACT_APP_RESTAURANT_KEY
 
-class Restaurants extends Component{
-    state = {name: ""};
+class Restaurants extends Component {
+    state = {
+        restaurants: [],
+        loadingFinished: false
+    };
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("컴포넌트 디스마운트");
         fetch('/api')
             .then(res => res.json())
-            .then(name => this.setState( name ));
+            .then(restaurants => this.setState({restaurants}))
+        this.setState({ loadingFinished: true })
+        console.log("로딩 피니시")
     };
 
-    render(){
+    render() {
+        console.log("렌더링");
+        console.log(this.state.restaurants);
+        console.log(this.state.loadingFinished);
         return (
+            this.state.loadingFinished ? 
             <div>
-                <h1>나의 이름 : { this.state.name }</h1>
+                <span> {JSON.stringify(this.state.restaurants) }</span>
+            </div>
+            :
+            <div>
+                <h1>로딩중..........</h1>
             </div>
         )
     }
