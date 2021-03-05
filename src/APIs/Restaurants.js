@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { Component } from 'react';
 import './Restaurants.css'
-import dotenv from 'dotenv'
-import axios from 'axios';
-// import axios from 'axios'
 
-dotenv.config()
+// const API_KEY = process.env.REACT_APP_RESTAURANT_KEY
 
-const API_KEY = process.env.REACT_APP_RESTAURANT_KEY
+class Restaurants extends Component{
+    state = {name: ""};
 
-function Restaurants() {
-    const [isLoading, setLoading] = useState(false)
-    // const restaurants = []
+    componentDidMount(){
+        console.log("컴포넌트 디스마운트");
+        fetch('/api')
+            .then(res => res.json())
+            .then(name => this.setState( name ));
+    };
 
-    console.log("첫 번째")
-
-    useEffect(() => {
-        console.log("유즈 이펙트")
-        const restaurants = axios.get('http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=' + API_KEY + '&resultType=json')
-        setLoading(true)
-    }, [])
-    console.log(isLoading)
-    return isLoading ? (
-        <h4>로딩 중</h4>
-    ) : (
-        <h4>로딩 끝</h4>
+    render(){
+        return (
+            <div>
+                <h1>나의 이름 : { this.state.name }</h1>
+            </div>
         )
-}
+    }
+};
 
 export default Restaurants;
