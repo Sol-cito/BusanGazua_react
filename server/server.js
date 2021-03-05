@@ -11,7 +11,7 @@ const API_KEY =
 const getAPIdata = async () => {
     let response;
     try {
-        response = await axios.get('http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey='+ API_KEY+'&resultType=json');
+        response = await axios.get('http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=' + '&resultType=json');
     } catch (e) {
         console.log(e);
     }

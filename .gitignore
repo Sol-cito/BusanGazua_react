@@ -22,5 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 # environment var
+=======
+# APIkey env variable
+>>>>>>> cc61e29b68be1894df546e303a0b48e16023dac9
 .env
