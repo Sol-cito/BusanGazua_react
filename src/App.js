@@ -1,14 +1,18 @@
 import React from 'react';
 import './App.css';
+import NavigationBar from './Components/NavigationBar'
 import ViewOfRestaurants from './Components/ViewOfRestaurants'
+import Home from './Components/Home'
+import { HashRouter, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div>
-      <h1>부산 가즈아!!!!</h1>
-      <div>
-        <ViewOfRestaurants />
-      </div>
+      <HashRouter>
+        <NavigationBar />
+        <Route path="/Home" exact={true} component={Home}></Route>
+        <Route path="/ViewOfRestaurants" exact={true} component={ViewOfRestaurants}></Route>
+      </HashRouter>
     </div>
   );
 }

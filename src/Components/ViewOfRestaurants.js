@@ -4,8 +4,10 @@ import './ViewOfRestaurants.css'
 
 function ViewOfRestaurants() {
     return (
-        <div className='gridContainer'>
-            <GetRestaurants />
+        <div>
+            <div className='gridContainer'>
+                <GetRestaurants />
+            </div>
         </div>
     );
 }
