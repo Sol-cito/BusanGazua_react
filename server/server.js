@@ -13,7 +13,7 @@ app.listen(port, () =>
 );
 
 const address = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=' + API_KEY 
-+ '&numOfRows=10'
++ '&numOfRows=20'
 + '&resultType=json';
 
 const getAPIdata = async () => {

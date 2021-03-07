@@ -1,0 +1,20 @@
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, auto));
+    justify-items: stretch;
+    gap: 20px;
+}
+
+@media screen and (max-width: 500px){
+    .gridContainer{
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 1000px){
+    .gridContainer{
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+    }
+}

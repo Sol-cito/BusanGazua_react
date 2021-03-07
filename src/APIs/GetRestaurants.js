@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import Restaurant from './Restaurant';
+import Restaurant from '../Components/Restaurant';
+import './GetRestaurants.css';
 
 class GetRestaurants extends Component {
 
@@ -16,7 +17,7 @@ class GetRestaurants extends Component {
                 .then(restaurants => this.setState({ restaurants }));
             this.setState({ loadingFinished: true });
             console.log("로딩 피니시");
-        } catch(e){
+        } catch (e) {
             console.log("---로딩 실패");
             console.log(e);
         }
@@ -31,24 +32,22 @@ class GetRestaurants extends Component {
                 this.state.restaurants.map((restaurant) => {
                     console.log(restaurant);
                     return (
-                        <Restaurant
-                            key = {restaurant.UC_SEQ}
-                            MAIN_TITLE = {restaurant.MAIN_TITLE}
-                            ITEMCNTNTS = {restaurant.ITEMCNTNTS}
-                            PLACE = {restaurant.PLACE}
-                            SUBTITLE = {restaurant.SUBTITLE}
-                            ADDR1 = {restaurant.ADDR1}
-                            ADDR2 = {restaurant.ADDR2}
-                            CNTCT_TEL = {restaurant.CNTCT_TEL}
-                            USAGE_DAY_WEEK_AND_TIME = {restaurant.USAGE_DAY_WEEK_AND_TIME}
-                            RPRSNTV_MENU = {restaurant.RPRSNTV_MENU}
-                            MAIN_IMG_NORMAL = {restaurant.MAIN_IMG_NORMAL}
-                        />
+                        <div class = 'gridItem'>
+                            <Restaurant
+                                key={restaurant.UC_SEQ}
+                                MAIN_TITLE={restaurant.MAIN_TITLE}
+                                ITEMCNTNTS={restaurant.ITEMCNTNTS}
+                                ADDR1={restaurant.ADDR1}
+                                LAT={restaurant.LAT}
+                                LNG={restaurant.LNG}
+                                CNTCT_TEL={restaurant.CNTCT_TEL}
+                                USAGE_DAY_WEEK_AND_TIME={restaurant.USAGE_DAY_WEEK_AND_TIME}
+                                RPRSNTV_MENU={restaurant.RPRSNTV_MENU}
+                                MAIN_IMG_NORMAL={restaurant.MAIN_IMG_NORMAL}
+                            />
+                        </div>
                     )
                 })
-                // <div>
-                //     <span> {JSON.stringify(this.state.restaurants)}</span>
-                // </div>
                 :
                 <div>
                     <h1>로딩중..........</h1>

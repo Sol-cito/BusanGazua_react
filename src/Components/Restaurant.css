@@ -1,0 +1,36 @@
+.restaurant{
+    background-color: white;
+    margin: 50px;
+    padding:30px;
+    width: 70%;
+}
+
+.restaurant .name{
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.restaurant .content{
+    line-height: 160%;
+}
+
+.restaurant .divForTag{
+    line-height: 250%;
+}
+
+.restaurant .tag{
+    font-weight: 700;
+}
+
+.restaurant img{
+    position: relative;
+    margin-top: 20px;
+    max-width: 100%;
+    box-shadow: 0 20px 60px -20px;
+}
+
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
