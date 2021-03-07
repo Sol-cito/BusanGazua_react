@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
-import './APIs/Restaurants'
-import Restaurants from './APIs/Restaurants';
+import GetRestaurants from './APIs/GetRestaurants';
 
 function App() {
   return (
     <div>
       <h1>부산 가즈아!!!!</h1>
       <div>
-        <Restaurants />
+        <GetRestaurants />
       </div>
     </div>
   );
