@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Restaurant from '../Components/Restaurant';
-import './GetRestaurants.css';
+import '../CSS/GetRestaurants.css';
 
 class GetRestaurants extends Component {
 
@@ -24,15 +24,12 @@ class GetRestaurants extends Component {
     };
 
     render() {
-        console.log("렌더링");
-        console.log(this.state.restaurants);
-        console.log(this.state.loadingFinished);
         return (
             this.state.loadingFinished ?
                 this.state.restaurants.map((restaurant) => {
                     console.log(restaurant);
                     return (
-                        <div class = 'gridItem'>
+                        <div className='gridItem'>
                             <Restaurant
                                 key={restaurant.UC_SEQ}
                                 MAIN_TITLE={restaurant.MAIN_TITLE}

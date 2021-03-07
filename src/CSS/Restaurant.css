@@ -1,9 +1,11 @@
 .restaurant{
     background-color: white;
-    margin: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
     padding:30px;
     padding-top: 5px;
     width: 70%;
+    border-radius: 20px;
 }
 
 .restaurant .name{
@@ -27,7 +29,7 @@
     position: relative;
     margin-top: 20px;
     max-width: 100%;
-    box-shadow: 0 20px 60px -20px;
+    box-shadow: 0 20px 60px -35px;
 }
 
 .container{

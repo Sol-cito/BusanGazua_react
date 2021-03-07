@@ -1,0 +1,60 @@
+.viewContainer{
+    margin-top: 100px;
+}
+
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, auto));
+    justify-items: stretch;
+    gap: 20px;
+}
+
+.buttonParent{
+    text-align: right;
+    margin-right: 100px;
+}
+
+.mapButton{
+    padding: 12px;
+    text-align: center;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background-color:  #7e9cff;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.mapButton:hover{
+    background-color: #6c85d6;
+}
+
+@media screen and (min-width: 501px) and (max-width: 1000px){
+    .viewContainer{
+        margin-top: 100px;
+    }
+    .gridContainer{
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+    }
+    .mapButton{
+        margin-top: 50px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .viewContainer{
+        margin-top: 100px;
+    }
+    .gridContainer{
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .mapButton{
+        margin-top: 50px;
+        font-size: 12px;
+    }
+}

@@ -1,10 +1,10 @@
 import React from 'react';
-import './NavigationBar.css';
+import '../CSS/NavigationBar.css';
 import { Link } from 'react-router-dom';
 
 function NavigationBar() {
     return (
-        <div className = 'navBody'>
+        <div className='navBody'>
             <span className='homeTitle' > Busan Gazua </span>
             <div className='navBlock' >
                 <div className='navElement'>
@@ -13,6 +13,8 @@ function NavigationBar() {
                 <div className='navElement'>
                     <Link to="/ViewOfRestaurants">Restaurants</Link>
                 </div>
+                <div className='navElement'>Places</div>
+                <div className='navElement'>Festivals </div>
             </div>
         </div>
     );

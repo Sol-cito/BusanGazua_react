@@ -1,8 +1,8 @@
 import React from 'react';
-import './Restaurant.css'
+import '../CSS/Restaurant.css'
 
 function Restaurant(
-    {
+    {   
         MAIN_TITLE,
         ITEMCNTNTS,
         ADDR1,
