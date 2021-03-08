@@ -12,6 +12,7 @@ class GetRestaurants extends Component {
     componentDidMount() {
         console.log("컴포넌트 디스마운트");
         try {
+            console.log();
             fetch('/api')
                 .then(res => res.json())
                 .then(restaurants => this.setState({ restaurants }));
