@@ -4,7 +4,6 @@ const axios = require('axios');
 require('dotenv').config();
 
 const API_KEY = process.env.REACT_APP_RESTAURANT_KEY;
-console.log("서비스키 : " + API_KEY);
 const numOfRows = 20; // 보여줄 아이템 개수
 
 
