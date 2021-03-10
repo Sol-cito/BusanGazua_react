@@ -15,7 +15,6 @@ function App() {
         <Route path="/ViewOfRestaurants" exact={true} component={ViewOfRestaurants}></Route>
         <Route path="/RestaurantMap" exact={true} component={RestaurantMap}></Route>
       </HashRouter>
-      <Home />
     </div>
   );
 }

@@ -1,33 +1,23 @@
 const express = require('express');
-const axios = require('axios');
 const app = express();
 
-
-require('dotenv').config();
-
-const API_KEY = process.env.REACT_APP_RESTAURANT_KEY;
+const requestRestaurant = require('./APIs_server/RequestRestaurant');
 
 const port = 4000; // 서버 포트 4000번
 app.listen(port, () =>
     console.log('Node.js Server 가 실행되었음'),
 );
 
-const address = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=' + API_KEY 
-+ '&numOfRows=20'
-+ '&resultType=json';
-
-const getAPIdata = async () => {
-    try {
-        return await axios.get(address);
-    }catch(e){
-        console.log(e);
+/* 컨트롤러 역할을 함 - { service }에 따라 분기 */
+app.get('/api/:service', async (req, res) => {
+    let {service} = req.params;
+    let result = 0;
+    if(service == 'restaurant'){
+        console.log("-------> 레스토랑 api 요청");
+        result = await requestRestaurant.getRestaurantData();
+    }else if(service == 'places'){
+        console.log("-------> 장소 api 요청");
+        // result = await requestRestaurant.getRestaurantData();
     }
-}
-
-app.get('/api', async (req, res) => {
-    console.log("겟 요청 들어옴");
-    const apiData = await getAPIdata();
-    const items = apiData.data.getFoodKr.item;
-    console.log(items);
-    res.json(items);
+    res.json(result);
 });
