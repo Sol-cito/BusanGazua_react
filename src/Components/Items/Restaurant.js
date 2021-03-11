@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../CSS/Restaurant.css'
 
 function Restaurant(
     {   
@@ -14,7 +13,7 @@ function Restaurant(
         MAIN_IMG_NORMAL
     }) {
     return (
-        <div className='restaurant'>
+        <div className='cardView'>
             <p className='name'>{MAIN_TITLE}</p>
             <p className='content'>{ITEMCNTNTS}</p>
             <div className='divForTag'>

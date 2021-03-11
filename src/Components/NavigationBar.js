@@ -1,5 +1,4 @@
 import React from 'react';
-import '../CSS/NavigationBar.css';
 import { Link } from 'react-router-dom';
 
 function NavigationBar() {
@@ -11,13 +10,13 @@ function NavigationBar() {
                     <Link to="/Home">Home</Link>
                 </div>
                 <div className='navElement'>
-                    <Link to="/ViewOfRestaurants">Restaurants</Link>
+                    <Link to="/ViewController/:Restaurants">Restaurants</Link>
                 </div>
                 <div className='navElement'>
-                    <Link to="/ViewOfPlaces">Places</Link>
+                    <Link to="/ViewController/:Places">Places</Link>
                 </div>
                 <div className='navElement'>
-                    <Link to="/ViewOfFestivals">Festivals</Link>
+                    <Link to="/ViewController/:Festivals">Festivals</Link>
                 </div>
             </div>
         </div>

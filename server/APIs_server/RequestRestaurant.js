@@ -1,10 +1,11 @@
 const axios = require('axios');
+const e = require('express');
 
 
 require('dotenv').config();
 
 const API_KEY = process.env.REACT_APP_RESTAURANT_KEY;
-const numOfRows = 20; // 보여줄 아이템 개수
+const numOfRows = 10; // 보여줄 아이템 개수
 
 
 const address = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=' + API_KEY
@@ -13,15 +14,12 @@ const address = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey
     + '&'
     + 'resultType=json';
 
-module.exports.getRestaurantData = async () => {
-    const res = await getAPIdata();
-    return res.data.getFoodKr.item;
-};
-
-const getAPIdata = async () => {
+module.exports.getRestaurantData = async (pageNo) => {
     try {
-        return await axios.get(address);
+        console.log("[SERVER] 요청 주소 : " + address + '&pageNo=' + pageNo);
+        res = await axios.get(address + '&pageNo=' + pageNo);
+        return res.data.getFoodKr.item;
     } catch (e) {
         console.log(e);
     }
-}
+};

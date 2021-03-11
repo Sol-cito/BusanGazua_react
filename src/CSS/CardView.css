@@ -1,4 +1,4 @@
-.festival{
+.cardView{
     background-color: white;
     margin-left: 50px;
     margin-top: 20px;
@@ -8,30 +8,24 @@
     border-radius: 20px;
 }
 
-.festival .name{
+.cardView .name{
     font-size: x-large;
     font-weight: 700;
 }
 
-.festival .content{
+.cardView .content{
     line-height: 160%;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
 }
 
-.festival .divForTag{
+.cardView .divForTag{
     line-height: 250%;
 }
 
-.festival .tag{
+.cardView .tag{
     font-weight: 700;
 }
 
-.festival img{
+.cardView img{
     position: relative;
     margin-top: 20px;
     max-width: 100%;

@@ -20,6 +20,7 @@ module.exports.getPlaceData = async () => {
 
 const getAPIdata = async () => {
     try {
+        console.log(address);
         return await axios.get(address);
     } catch (e) {
         console.log(e);

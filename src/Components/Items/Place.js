@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../CSS/Place.css'
 
 function Place(
     {   
@@ -16,7 +15,7 @@ function Place(
         MAIN_IMG_NORMAL
     }) {
     return (
-        <div className='restaurant'>
+        <div className='cardView'>
             <p className='name'>{MAIN_TITLE}</p>
             <p className='content'>{SUBTITLE}</p>
             <p className='content'>{ITEMCNTNTS}</p>

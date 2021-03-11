@@ -11,7 +11,6 @@ class GetFestivals extends Component {
     componentDidMount() {
         console.log("컴포넌트 디스마운트");
         try {
-            console.log();
             fetch('/api/festivals')
                 .then(res => res.json())
                 .then(festivals => this.setState({ festivals }));

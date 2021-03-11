@@ -11,7 +11,6 @@ class GetPlaces extends Component {
     componentDidMount() {
         console.log("컴포넌트 디스마운트");
         try {
-            console.log();
             fetch('/api/places')
                 .then(res => res.json())
                 .then(places => this.setState({ places }));

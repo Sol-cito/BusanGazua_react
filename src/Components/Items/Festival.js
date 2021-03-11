@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../CSS/Festival.css'
 
 function Festival(
     {   
@@ -16,7 +15,7 @@ function Festival(
         MAIN_IMG_NORMAL
     }) {
     return (
-        <div className='festival'>
+        <div className='cardView'>
             <p className='name'>{MAIN_TITLE}</p>
             <p className='content'>{SUBTITLE}</p>
             <p className='content'>{ITEMCNTNTS}</p>
