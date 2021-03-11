@@ -1,0 +1,39 @@
+.place{
+    background-color: white;
+    margin-left: 50px;
+    margin-top: 20px;
+    padding:30px;
+    padding-top: 5px;
+    width: 70%;
+    border-radius: 20px;
+}
+
+.place .name{
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.place .content{
+    line-height: 160%;
+}
+
+.place .divForTag{
+    line-height: 250%;
+}
+
+.place .tag{
+    font-weight: 700;
+}
+
+.place img{
+    position: relative;
+    margin-top: 20px;
+    max-width: 100%;
+    box-shadow: 0 20px 60px -35px;
+}
+
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}

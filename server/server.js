@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 
 const requestRestaurant = require('./APIs_server/RequestRestaurant');
+const requestPlaces = require('./APIs_server/RequestPlaces');
+const RequestFestivals = require('./APIs_server/RequestFestivals');
 
 const port = 4000; // 서버 포트 4000번
 app.listen(port, () =>
@@ -17,7 +19,11 @@ app.get('/api/:service', async (req, res) => {
         result = await requestRestaurant.getRestaurantData();
     }else if(service == 'places'){
         console.log("-------> 장소 api 요청");
-        // result = await requestRestaurant.getRestaurantData();
+        result = await requestPlaces.getPlaceData();
+    }else if(service == 'festivals'){
+        console.log("-------> 축제 api 요청");
+        result = await RequestFestivals.getFestivalData();
+        console.log(result);
     }
     res.json(result);
 });

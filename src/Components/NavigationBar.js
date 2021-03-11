@@ -13,8 +13,12 @@ function NavigationBar() {
                 <div className='navElement'>
                     <Link to="/ViewOfRestaurants">Restaurants</Link>
                 </div>
-                <div className='navElement'>Places</div>
-                <div className='navElement'>Festivals </div>
+                <div className='navElement'>
+                    <Link to="/ViewOfPlaces">Places</Link>
+                </div>
+                <div className='navElement'>
+                    <Link to="/ViewOfFestivals">Festivals</Link>
+                </div>
             </div>
         </div>
     );

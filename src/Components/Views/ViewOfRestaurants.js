@@ -1,6 +1,6 @@
 import React from 'react';
-import GetRestaurants from '../APIs/GetRestaurants';
-import '../CSS/ViewOfRestaurants.css'
+import GetRestaurants from '../../APIs/GetRestaurants';
+import '../../CSS/ViewOfRestaurants.css'
 import { Link } from 'react-router-dom';
 
 function ViewOfRestaurants() {

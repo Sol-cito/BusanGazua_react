@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Place from '../Components/Items/Place';
 
 class GetPlaces extends Component {
 
@@ -11,9 +12,9 @@ class GetPlaces extends Component {
         console.log("컴포넌트 디스마운트");
         try {
             console.log();
-            fetch('/api')
+            fetch('/api/places')
                 .then(res => res.json())
-                .then(restaurants => this.setState({ restaurants }));
+                .then(places => this.setState({ places }));
             this.setState({ loadingFinished: true });
             console.log("로딩 피니시");
         } catch (e) {
@@ -25,21 +26,23 @@ class GetPlaces extends Component {
     render() {
         return (
             this.state.loadingFinished ?
-                this.state.restaurants.map((restaurant) => {
-                    console.log(restaurant);
+                this.state.places.map((place) => {
+                    console.log(place);
                     return (
                         <div className='gridItem'>
-                            <Restaurant
-                                key={restaurant.UC_SEQ}
-                                MAIN_TITLE={restaurant.MAIN_TITLE}
-                                ITEMCNTNTS={restaurant.ITEMCNTNTS}
-                                ADDR1={restaurant.ADDR1}
-                                LAT={restaurant.LAT}
-                                LNG={restaurant.LNG}
-                                CNTCT_TEL={restaurant.CNTCT_TEL}
-                                USAGE_DAY_WEEK_AND_TIME={restaurant.USAGE_DAY_WEEK_AND_TIME}
-                                RPRSNTV_MENU={restaurant.RPRSNTV_MENU}
-                                MAIN_IMG_NORMAL={restaurant.MAIN_IMG_NORMAL}
+                            <Place
+                                key={place.UC_SEQ}
+                                MAIN_TITLE={place.MAIN_TITLE}
+                                SUBTITLE={place.SUBTITLE}
+                                ITEMCNTNTS={place.ITEMCNTNTS}
+                                ADDR1={place.ADDR1}
+                                LAT={place.LAT}
+                                LNG={place.LNG}
+                                USAGE_DAY={place.USAGE_DAY}
+                                USAGE_AMOUNT={place.USAGE_AMOUNT}
+                                TRFC_INFO={place.TRFC_INFO}
+                                HOMEPAGE_URL={place.HOMEPAGE_URL}
+                                MAIN_IMG_NORMAL={place.MAIN_IMG_NORMAL}
                             />
                         </div>
                     )

@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import Restaurant from '../Components/Restaurant';
-import '../CSS/GetRestaurants.css';
+import Restaurant from '../Components/Items/Restaurant';
 
 class GetRestaurants extends Component {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../CSS/Restaurant.css'
+import '../../CSS/Restaurant.css'
 
 function Restaurant(
     {   
