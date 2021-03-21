@@ -15,7 +15,6 @@ function App() {
     <div>
       <BrowserRouter>
         <NavigationBar />
-        <Route path="/" exact={true} component={Home}></Route>
         <Route path="/Home" exact={true} component={Home}></Route>
         <Route path="/ViewController/:viewSelection" exact={true} component={ViewController}></Route>
         <Route path="/RestaurantMap" exact={true} component={RestaurantMap}></Route>

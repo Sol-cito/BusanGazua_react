@@ -26,22 +26,34 @@ class GetRestaurants extends Component {
     }
 
     componentDidMount() {
-        console.log("컴포넌트 디스마운트");
+        console.log("레스토랑 컴포넌트 디스마운트");
+        console.log("레스토랑의 pageNo before : "+ this.state.pageNo);
+        console.log("레스토랑의 pageNo : "+ this.state.pageNo);
+        console.log("레스토랑의 loadingFinished : "+ this.state.loadingFinished);
         setTimeout(() => {
-            this.callAPI()
+            this.callAPI("restaurants")
         }, 1000) // 타임아웃 1초
-        // window.addEventListener("scroll", this.infiniteScroll);
+        window.addEventListener("scroll", this.infiniteScroll);
     };
 
-    // infiniteScroll = () => {
-    //     let scrollHeight = document.documentElement.scrollHeight;
-    //     let scrollTop = document.documentElement.scrollTop;
-    //     let clientHeight = document.documentElement.clientHeight;
-    //     if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
-    //         this.setState({ pageNo: this.state.pageNo + 1 });
-    //         this.callAPI();
-    //     }
-    // }
+    /* 렌더링 해제될 때 이벤트리스너도 해제해야 한다.
+     * 그렇지 않으면, GetPlaces와 GetFestivals에서도
+     * 스크롤 내릴 때 계속 호출된다.
+     *  */
+    componentWillUnmount(){
+        window.removeEventListener("scroll", this.infiniteScroll);
+    }
+
+    infiniteScroll = () => {
+        console.log("인피니티 스크롤----------------------");
+        let scrollHeight = document.documentElement.scrollHeight;
+        let scrollTop = document.documentElement.scrollTop;
+        let clientHeight = document.documentElement.clientHeight;
+        if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
+            this.setState({ pageNo: this.state.pageNo + 1 });
+            this.callAPI("restaurants");
+        }
+    }
 
     render() {
         console.log("loadingFinished : " + this.state.loadingFinished);

@@ -31,18 +31,22 @@ class GetFestivals extends Component {
         setTimeout(() => {
             this.callAPI()
         }, 1000) // 타임아웃 1초
-        // window.addEventListener("scroll", this.infiniteScroll);
+        window.addEventListener("scroll", this.infiniteScroll);
     };
 
-    // infiniteScroll = () => {
-    //     let scrollHeight = document.documentElement.scrollHeight;
-    //     let scrollTop = document.documentElement.scrollTop;
-    //     let clientHeight = document.documentElement.clientHeight;
-    //     if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
-    //         this.setState({ pageNo: this.state.pageNo + 1 });
-    //         this.callAPI();
-    //     }
-    // }
+    componentWillUnmount(){
+        window.removeEventListener("scroll", this.infiniteScroll);
+    }
+
+    infiniteScroll = () => {
+        let scrollHeight = document.documentElement.scrollHeight;
+        let scrollTop = document.documentElement.scrollTop;
+        let clientHeight = document.documentElement.clientHeight;
+        if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
+            this.setState({ pageNo: this.state.pageNo + 1 });
+            this.callAPI();
+        }
+    }
 
     render() {
         console.log("loadingFinished : " + this.state.loadingFinished);
