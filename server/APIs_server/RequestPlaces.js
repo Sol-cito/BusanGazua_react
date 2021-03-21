@@ -13,16 +13,13 @@ const address = 'http://apis.data.go.kr/6260000/AttractionService/getAttractionK
     + '&'
     + 'resultType=json';
 
-module.exports.getPlaceData = async () => {
-    const res = await getAPIdata();
-    return res.data.getAttractionKr.item;
-};
-
-const getAPIdata = async () => {
+module.exports.getPlaceData = async (pageNo) => {
     try {
-        console.log(address);
-        return await axios.get(address);
+        console.log("[SERVER] 요청 주소 : " + address + '&pageNo=' + pageNo);
+        res = await axios.get(address + '&pageNo=' + pageNo);
+        console.log("getPlaceData 결과 : " + res.data.getAttractionKr.item);
+        return res.data.getAttractionKr.item;
     } catch (e) {
         console.log(e);
     }
-}
+};

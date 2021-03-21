@@ -17,15 +17,15 @@ app.get('/api/:service/:pageNo', async (req, res) => {
     console.log("----request service : " + service);
     console.log("----request pageNo : " + pageNo);
     let result = -1;
-    if (service == 'restaurant') {
+    if (service === 'restaurants') {
         console.log("-------> 레스토랑 api 요청");
         result = await requestRestaurant.getRestaurantData(pageNo);
-    } else if (service == 'places') {
+    } else if (service === 'places') {
         console.log("-------> 장소 api 요청");
-        result = await requestPlaces.getPlaceData();
-    } else if (service == 'festivals') {
+        result = await requestPlaces.getPlaceData(pageNo);
+    } else if (service === 'festivals') {
         console.log("-------> 축제 api 요청");
-        result = await RequestFestivals.getFestivalData();
+        result = await RequestFestivals.getFestivalData(pageNo);
     }
     res.json(result);
 });

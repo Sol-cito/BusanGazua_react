@@ -12,7 +12,7 @@ class GetRestaurants extends Component {
 
     callAPI = () => {
         try {
-            fetch('/api/restaurant/' + this.state.pageNo)
+            fetch('/api/restaurants/' + this.state.pageNo)
                 .then(res => res.json())
                 .then(restaurants => this.setState({
                     restaurants: this.state.restaurants.concat(restaurants)
@@ -30,25 +30,24 @@ class GetRestaurants extends Component {
         setTimeout(() => {
             this.callAPI()
         }, 1000) // 타임아웃 1초
-        window.addEventListener("scroll", this.infiniteScroll);
+        // window.addEventListener("scroll", this.infiniteScroll);
     };
 
-    infiniteScroll = () => {
-        let scrollHeight = document.documentElement.scrollHeight;
-        let scrollTop = document.documentElement.scrollTop;
-        let clientHeight = document.documentElement.clientHeight;
-        if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
-            this.setState({ pageNo: this.state.pageNo + 1 });
-            this.callAPI();
-        }
-    }
+    // infiniteScroll = () => {
+    //     let scrollHeight = document.documentElement.scrollHeight;
+    //     let scrollTop = document.documentElement.scrollTop;
+    //     let clientHeight = document.documentElement.clientHeight;
+    //     if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
+    //         this.setState({ pageNo: this.state.pageNo + 1 });
+    //         this.callAPI();
+    //     }
+    // }
 
     render() {
         console.log("loadingFinished : " + this.state.loadingFinished);
         return (
             this.state.loadingFinished ?
                 this.state.restaurants.map((restaurant) => {
-                    console.log(restaurant);
                     return (
                         <div className='gridItem'>
                             <Restaurant

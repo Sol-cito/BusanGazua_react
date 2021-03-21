@@ -13,15 +13,13 @@ const address = 'http://apis.data.go.kr/6260000/FestivalService/getFestivalKr?Se
     + '&'
     + 'resultType=json';
 
-module.exports.getFestivalData = async () => {
-    const res = await getAPIdata();
-    return res.data.getFestivalKr.item;
-};
-
-const getAPIdata = async () => {
+module.exports.getFestivalData = async (pageNo) => {
     try {
-        return await axios.get(address);
+        console.log("[SERVER] 요청 주소 : " + address + '&pageNo=' + pageNo);
+        res = await axios.get(address + '&pageNo=' + pageNo);
+        console.log("getFestivalData 결과 : " + res.data.getFestivalKr.item);
+        return res.data.getFestivalKr.item;
     } catch (e) {
         console.log(e);
     }
-}
+};

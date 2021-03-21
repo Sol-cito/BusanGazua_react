@@ -17,7 +17,7 @@ function Place(
     return (
         <div className='cardView'>
             <p className='name'>{MAIN_TITLE}</p>
-            <p className='content'>{SUBTITLE}</p>
+            <h4>{SUBTITLE}</h4>
             <p className='content'>{ITEMCNTNTS}</p>
             <div className='divForTag'>
                 <span className='tag'>주소 : </span>

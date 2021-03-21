@@ -18,6 +18,7 @@ module.exports.getRestaurantData = async (pageNo) => {
     try {
         console.log("[SERVER] 요청 주소 : " + address + '&pageNo=' + pageNo);
         res = await axios.get(address + '&pageNo=' + pageNo);
+        console.log("레스토랑 결과 : "+res.data.getFoodKr.item);
         return res.data.getFoodKr.item;
     } catch (e) {
         console.log(e);

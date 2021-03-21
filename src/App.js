@@ -7,18 +7,19 @@ import './CSS/Home.css';
 import NavigationBar from './Components/NavigationBar'
 import Home from './Components/Home'
 import RestaurantMap from './Components/RestaurantMap'
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ViewController from './Components/ViewController';
 
 function App() {
   return (
     <div>
-      <HashRouter>
+      <BrowserRouter>
         <NavigationBar />
+        <Route path="/" exact={true} component={Home}></Route>
         <Route path="/Home" exact={true} component={Home}></Route>
         <Route path="/ViewController/:viewSelection" exact={true} component={ViewController}></Route>
         <Route path="/RestaurantMap" exact={true} component={RestaurantMap}></Route>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }
