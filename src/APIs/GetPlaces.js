@@ -58,13 +58,15 @@ class GetPlaces extends Component {
                             <Place
                                 key={place.UC_SEQ}
                                 MAIN_TITLE={place.MAIN_TITLE}
+                                SUBTITLE={place.SUBTITLE}
                                 ITEMCNTNTS={place.ITEMCNTNTS}
                                 ADDR1={place.ADDR1}
                                 LAT={place.LAT}
                                 LNG={place.LNG}
-                                CNTCT_TEL={place.CNTCT_TEL}
-                                USAGE_DAY_WEEK_AND_TIME={place.USAGE_DAY_WEEK_AND_TIME}
-                                RPRSNTV_MENU={place.RPRSNTV_MENU}
+                                USAGE_DAY={place.USAGE_DAY}
+                                USAGE_AMOUNT={place.USAGE_AMOUNT}
+                                TRFC_INFO={place.TRFC_INFO}
+                                HOMEPAGE_URL={place.HOMEPAGE_URL}
                                 MAIN_IMG_NORMAL={place.MAIN_IMG_NORMAL}
                             />
                         </div>

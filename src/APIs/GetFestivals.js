@@ -34,7 +34,7 @@ class GetFestivals extends Component {
         window.addEventListener("scroll", this.infiniteScroll);
     };
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         window.removeEventListener("scroll", this.infiniteScroll);
     }
 
@@ -58,20 +58,22 @@ class GetFestivals extends Component {
                             <Festival
                                 key={festival.UC_SEQ}
                                 MAIN_TITLE={festival.MAIN_TITLE}
+                                SUBTITLE={festival.SUBTITLE}
                                 ITEMCNTNTS={festival.ITEMCNTNTS}
                                 ADDR1={festival.ADDR1}
                                 LAT={festival.LAT}
                                 LNG={festival.LNG}
-                                CNTCT_TEL={festival.CNTCT_TEL}
-                                USAGE_DAY_WEEK_AND_TIME={festival.USAGE_DAY_WEEK_AND_TIME}
-                                RPRSNTV_MENU={festival.RPRSNTV_MENU}
+                                USAGE_DAY={festival.USAGE_DAY}
+                                USAGE_AMOUNT={festival.USAGE_AMOUNT}
+                                TRFC_INFO={festival.TRFC_INFO}
+                                HOMEPAGE_URL={festival.HOMEPAGE_URL}
                                 MAIN_IMG_NORMAL={festival.MAIN_IMG_NORMAL}
                             />
                         </div>
                     )
                 })
                 :
-                <div className = 'loadingSpinner'>
+                <div className='loadingSpinner'>
                     <ReactLoading type={'spin'} color={'#ffffff'} height={'100px'} width={'100px'} />
                 </div>
         )

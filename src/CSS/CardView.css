@@ -18,7 +18,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 
@@ -41,4 +41,12 @@
     height: 100%;
     display: flex;
     justify-content: center;
+}
+
+.homepage_url{
+    text-decoration: none;
+}
+
+.homepage_url:visited{
+    text-decoration: none;
 }
