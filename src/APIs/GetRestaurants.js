@@ -6,8 +6,10 @@ class GetRestaurants extends Component {
 
     state = {
         restaurants: [],
+        restaurantsArrSize: 0,
         pageNo: 1,
-        loadingFinished: false
+        loadingFinished: false,
+        moreDataExist: true
     };
 
     callAPI = () => {
@@ -17,6 +19,17 @@ class GetRestaurants extends Component {
                 .then(restaurants => this.setState({
                     restaurants: this.state.restaurants.concat(restaurants)
                 }));
+            /* 추가된 데이터가 없으면 noMoreData 플래그를 true로 만든다. */
+            if (this.state.loadingFinished == true 
+                && this.state.restaurantsArrSize == this.state.restaurants.length) {
+                console.log("노 모어 데이터!!!!!!!!!");
+                this.setState({
+                    moreDataExist: false
+                })
+            }
+            this.setState({
+                restaurantsArrSize: this.state.restaurants.length
+            })
             this.setState({ loadingFinished: true });
             console.log("로딩 피니시");
         } catch (e) {
@@ -50,8 +63,12 @@ class GetRestaurants extends Component {
         let scrollTop = document.documentElement.scrollTop;
         let clientHeight = document.documentElement.clientHeight;
         if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
-            this.setState({ pageNo: this.state.pageNo + 1 });
-            this.callAPI("restaurants");
+            if (this.state.moreDataExist) {
+                this.setState({ pageNo: this.state.pageNo + 1 });
+                this.callAPI();
+            }else{
+                alert("더 이상 불러올 데이터가 없습니다.");
+            }
         }
     }
 

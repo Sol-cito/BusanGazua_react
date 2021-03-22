@@ -7,17 +7,30 @@ class GetFestivals extends Component {
 
     state = {
         festivals: [],
+        festivalsArrSise: 0,
         pageNo: 1,
-        loadingFinished: false
+        loadingFinished: false,
+        moreDataExist: true
     };
 
     callAPI = () => {
         try {
+            console.log("부르기 전 사이즈 : " + this.state.festivalsArrSise);
             fetch('/api/festivals/' + this.state.pageNo)
                 .then(res => res.json())
                 .then(festivals => this.setState({
                     festivals: this.state.festivals.concat(festivals)
                 }));
+            /* 추가된 데이터가 없으면 noMoreData 플래그를 true로 만든다. */
+            if (this.state.loadingFinished == true && this.state.festivalsArrSise == this.state.festivals.length) {
+                console.log("노 모어 데이터!!!!!!!!!");
+                this.setState({
+                    moreDataExist: false
+                })
+            }
+            this.setState({
+                festivalsArrSise: this.state.festivals.length
+            })
             this.setState({ loadingFinished: true });
             console.log("로딩 피니시");
         } catch (e) {
@@ -43,13 +56,16 @@ class GetFestivals extends Component {
         let scrollTop = document.documentElement.scrollTop;
         let clientHeight = document.documentElement.clientHeight;
         if (Math.abs((scrollTop + clientHeight) - scrollHeight) < 1) { // 차이 : 1px
-            this.setState({ pageNo: this.state.pageNo + 1 });
-            this.callAPI();
+            if (this.state.moreDataExist) {
+                this.setState({ pageNo: this.state.pageNo + 1 });
+                this.callAPI();
+            }else{
+                alert("더 이상 불러올 데이터가 없습니다.");
+            }
         }
     }
 
     render() {
-        console.log("loadingFinished : " + this.state.loadingFinished);
         return (
             this.state.loadingFinished ?
                 this.state.festivals.map((festival) => {
@@ -70,6 +86,7 @@ class GetFestivals extends Component {
                                 MAIN_IMG_NORMAL={festival.MAIN_IMG_NORMAL}
                             />
                         </div>
+
                     )
                 })
                 :
