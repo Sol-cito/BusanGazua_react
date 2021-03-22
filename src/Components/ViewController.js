@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import GetRestaurants from '../APIs/GetRestaurants';
 import GetPlaces from '../APIs/GetPlaces';
 import GetFestivals from '../APIs/GetFestivals';

@@ -66,6 +66,8 @@ class GetFestivals extends Component {
     }
 
     render() {
+        console.log("loadingFinished : " + this.state.loadingFinished);
+        console.log("loadingFinished : " + this.state.loadingFinished);
         return (
             this.state.loadingFinished ?
                 this.state.festivals.map((festival) => {
