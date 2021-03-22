@@ -22,7 +22,7 @@ class GetFestivals extends Component {
                     festivals: this.state.festivals.concat(festivals)
                 }));
             /* 추가된 데이터가 없으면 noMoreData 플래그를 true로 만든다. */
-            if (this.state.loadingFinished == true && this.state.festivalsArrSise == this.state.festivals.length) {
+            if (this.state.loadingFinished === true && this.state.festivalsArrSise === this.state.festivals.length) {
                 console.log("노 모어 데이터!!!!!!!!!");
                 this.setState({
                     moreDataExist: false

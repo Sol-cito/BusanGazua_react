@@ -20,8 +20,8 @@ class GetRestaurants extends Component {
                     restaurants: this.state.restaurants.concat(restaurants)
                 }));
             /* 추가된 데이터가 없으면 noMoreData 플래그를 true로 만든다. */
-            if (this.state.loadingFinished == true 
-                && this.state.restaurantsArrSize == this.state.restaurants.length) {
+            if (this.state.loadingFinished === true 
+                && this.state.restaurantsArrSize === this.state.restaurants.length) {
                 console.log("노 모어 데이터!!!!!!!!!");
                 this.setState({
                     moreDataExist: false
