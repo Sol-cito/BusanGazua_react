@@ -3,7 +3,8 @@ const app = express();
 
 const requestRestaurant = require('./APIs_server/RequestRestaurant');
 const requestPlaces = require('./APIs_server/RequestPlaces');
-const RequestFestivals = require('./APIs_server/RequestFestivals');
+const requestFestivals = require('./APIs_server/RequestFestivals');
+const requestAllRestaurants = require('./APIs_server/RequestAllRestaurants');
 
 const port = 4000; // 서버 포트 4000번
 app.listen(port, () =>
@@ -25,7 +26,10 @@ app.get('/api/:service/:pageNo', async (req, res) => {
         result = await requestPlaces.getPlaceData(pageNo);
     } else if (service === 'festivals') {
         console.log("-------> 축제 api 요청");
-        result = await RequestFestivals.getFestivalData(pageNo);
+        result = await requestFestivals.getFestivalData(pageNo);
+    } else if (service === 'allRestaurants') {
+        console.log("-------> 지도 allRestaurants api 요청");
+        result = await requestAllRestaurants.getAllRestaurantData();
     }
     res.json(result);
 });
