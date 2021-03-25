@@ -2,55 +2,111 @@
 //  카카오map 을 글로벌 변수로 받아와 kakao객체 생성을 가능케 함.
 
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 
 function RestaurantMap() {
+
+  const [allRestaurants, setRestaurant] = useState([]);
+
   require('dotenv').config();
 
-  /* 훅으로 componentDidMount 설정 */
-  useEffect(() => {
-    /* 콜백함수로 syncronization */
-    getAllRestaurantData(function (restaurants) {
-      /* 마커 만드는 Method */
-      const makeMarker = (title, x, y) => {
-        new kakao.maps.Marker({
-          map: map,
-          title: title,
-          position: new kakao.maps.LatLng(x, y),
-        });
-      }
-
-      console.log("useEffect 시작")
-      const container = document.getElementById('kakaoMap');
-      const options = {
-        center: new kakao.maps.LatLng(35.1796, 129.0756),
-        level: 7
-      };
-      const map = new kakao.maps.Map(container, options);
-
-      /*  좌표값 x, y 를 넣어주면 됨. */
-      // https://velog.io/@bearsjelly/React-kakao-%EC%A7%80%EB%8F%84-%EB%9D%84%EC%9A%B0%EA%B8%B0-4-%EC%97%AC%EB%9F%AC%EA%B0%9C-%EB%A7%88%EC%BB%A4%EB%9D%84%EC%9A%B0%EA%B8%B0 참고할 것
-      {
-        restaurants.map((restaurant) => {
-          const MAIN_TITLE = restaurant.MAIN_TITLE;
-          const LAT = restaurant.LAT;
-          const LNG = restaurant.LNG
-          makeMarker(MAIN_TITLE, LAT, LNG);
-        })
-      };
-    });
-  }, []);
-
-
-  function getAllRestaurantData(callbackFunc) {
+  function getAllRestaurantData() {
     try {
       fetch('/api/allRestaurants/0')
         .then(res => res.json())
-        .then(restaurants => callbackFunc(restaurants))
+        .then(restaurants => setRestaurant(restaurants))
+      console.log("데이터 받아옴");
     } catch (e) {
       console.log("callAPI 실패");
       console.log(e);
     }
   }
+
+  /* 훅으로 componentDidMount 설정 */
+  useEffect(() => {
+    console.log("useEffect 시작")
+
+    if (allRestaurants.length == 0) {
+      getAllRestaurantData();
+    }
+
+    /* 마커 만드는 Method */
+
+    const makeMarker = (
+      MAIN_TITLE,
+      ITEMCNTNTS,
+      RPRSNTV_MENU,
+      MAIN_IMG_THUMB,
+      LAT,
+      LNG
+    ) => {
+      const marker = new kakao.maps.Marker({
+        map: map,
+        title: MAIN_TITLE,
+        position: new kakao.maps.LatLng(LAT, LNG),
+        clickable: true
+      });
+
+      const markerContent =
+        '<h4>' + MAIN_TITLE + '</h4>'
+        + '<span> 대표메뉴 : ' + RPRSNTV_MENU + '</span><br/>'
+        // + '<span style="width:50px">' + ITEMCNTNTS + '</span><br/>'
+        + '<img src=' + MAIN_IMG_THUMB + ' alt="no image" style="width:200px;height:200px">';
+
+      /* 마커 위 infoWindow 생성 */
+      const infowindow = new kakao.maps.InfoWindow({
+        content: markerContent
+      });
+      kakao.maps.event.addListener(
+        marker,
+        "click",
+        makeClickListener(map, marker, infowindow)
+      );
+      kakao.maps.event.addListener(
+        marker,
+        "mouseout",
+        makeOutListener(infowindow)
+      );
+
+      function makeClickListener(map, marker, infowindow) {
+        return function () {
+          infowindow.open(map, marker);
+        };
+      }
+
+      function makeOutListener(infowindow) {
+        return function () {
+          infowindow.close();
+        };
+      }
+    }
+
+    const container = document.getElementById('kakaoMap');
+    const options = {
+      center: new kakao.maps.LatLng(35.1796, 129.0756),
+      level: 7
+    };
+    const map = new kakao.maps.Map(container, options);
+
+    {
+      allRestaurants.map((restaurant) => {
+        const MAIN_TITLE = restaurant.MAIN_TITLE;
+        const ITEMCNTNTS = restaurant.ITEMCNTNTS;
+        const RPRSNTV_MENU = restaurant.RPRSNTV_MENU;
+        const MAIN_IMG_THUMB = restaurant.MAIN_IMG_THUMB;
+        const LAT = restaurant.LAT;
+        const LNG = restaurant.LNG
+        makeMarker(
+          MAIN_TITLE,
+          ITEMCNTNTS,
+          RPRSNTV_MENU,
+          MAIN_IMG_THUMB,
+          LAT,
+          LNG
+        );
+      })
+    };
+  });
 
   return (
     <div id='kakaoMap' style={{
