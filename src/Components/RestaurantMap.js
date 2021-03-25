@@ -11,11 +11,12 @@ function RestaurantMap() {
   require('dotenv').config();
 
   function getAllRestaurantData() {
+    console.log("요청");
     try {
       fetch('/api/allRestaurants/0')
         .then(res => res.json())
-        .then(restaurants => setRestaurant(restaurants))
-      console.log("데이터 받아옴");
+        .then(restaurants => setRestaurant(allRestaurants => allRestaurants.concat(restaurants)))
+      console.log("데이터 받아옴 : ");
     } catch (e) {
       console.log("callAPI 실패");
       console.log(e);
@@ -25,6 +26,7 @@ function RestaurantMap() {
   /* 훅으로 componentDidMount 설정 */
   useEffect(() => {
     console.log("useEffect 시작")
+    console.log("데이터 : " + allRestaurants);
 
     if (allRestaurants.length == 0) {
       getAllRestaurantData();
@@ -44,7 +46,7 @@ function RestaurantMap() {
         map: map,
         title: MAIN_TITLE,
         position: new kakao.maps.LatLng(LAT, LNG),
-        clickable: true
+        // clickable: true
       });
 
       const markerContent =
@@ -59,8 +61,8 @@ function RestaurantMap() {
       });
       kakao.maps.event.addListener(
         marker,
-        "click",
-        makeClickListener(map, marker, infowindow)
+        "mouseover",
+        makeMouseOverListener(map, marker, infowindow)
       );
       kakao.maps.event.addListener(
         marker,
@@ -68,7 +70,9 @@ function RestaurantMap() {
         makeOutListener(infowindow)
       );
 
-      function makeClickListener(map, marker, infowindow) {
+      /* 모바일로 했을 때 mouseover가 먹히지 않음. mouseClick은 먹히나, infoWindow가 사라지지 않음 */
+      /* https://devtalk.kakao.com/t/topic/109328/2 이대로 하면 될듯 !*/
+      function makeMouseOverListener(map, marker, infowindow) {
         return function () {
           infowindow.open(map, marker);
         };
@@ -80,6 +84,8 @@ function RestaurantMap() {
         };
       }
     }
+
+    console.log("여기요???");
 
     const container = document.getElementById('kakaoMap');
     const options = {
