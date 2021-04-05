@@ -36,11 +36,11 @@ function RestaurantMap() {
 
     const makeMarker = (
       MAIN_TITLE,
-      ITEMCNTNTS,
       RPRSNTV_MENU,
       MAIN_IMG_THUMB,
       LAT,
-      LNG
+      LNG,
+      ADDR1
     ) => {
       const marker = new kakao.maps.Marker({
         map: map,
@@ -50,10 +50,22 @@ function RestaurantMap() {
       });
 
       const markerContent =
-        '<h4>' + MAIN_TITLE + '</h4>'
-        + '<span> 대표메뉴 : ' + RPRSNTV_MENU + '</span><br/>'
-        // + '<span style="width:50px">' + ITEMCNTNTS + '</span><br/>'
-        + '<img src=' + MAIN_IMG_THUMB + ' alt="no image" style="width:200px;height:200px">';
+        '<div>'
+        + '<div style="text-align:center;">'
+        + '<h3>' + MAIN_TITLE + '</h3>'
+        + '</div>'
+        + '<div>'
+        + '<b>대표메뉴</b> : ' + RPRSNTV_MENU
+        + '</div>'
+        + '<br/>'
+        + '<div>'
+        + ADDR1
+        + '</div>'
+        + '</br>'
+        + '<div style="text-align:center;">'
+        + '<img src=' + MAIN_IMG_THUMB + ' alt="no image" style="width:300px;height:200px">'
+        + '</div>'
+        + '</div>';
 
       /* 마커 위 infoWindow 생성 */
       const infowindow = new kakao.maps.InfoWindow({
@@ -70,8 +82,6 @@ function RestaurantMap() {
         makeOutListener(infowindow)
       );
 
-      /* 모바일로 했을 때 mouseover가 먹히지 않음. mouseClick은 먹히나, infoWindow가 사라지지 않음 */
-      /* https://devtalk.kakao.com/t/topic/109328/2 이대로 하면 될듯 !*/
       function makeMouseOverListener(map, marker, infowindow) {
         return function () {
           infowindow.open(map, marker);
@@ -85,8 +95,6 @@ function RestaurantMap() {
       }
     }
 
-    console.log("여기요???");
-
     const container = document.getElementById('kakaoMap');
     const options = {
       center: new kakao.maps.LatLng(35.1796, 129.0756),
@@ -97,18 +105,18 @@ function RestaurantMap() {
     {
       allRestaurants.map((restaurant) => {
         const MAIN_TITLE = restaurant.MAIN_TITLE;
-        const ITEMCNTNTS = restaurant.ITEMCNTNTS;
         const RPRSNTV_MENU = restaurant.RPRSNTV_MENU;
         const MAIN_IMG_THUMB = restaurant.MAIN_IMG_THUMB;
         const LAT = restaurant.LAT;
         const LNG = restaurant.LNG
+        const ADDR1 = restaurant.ADDR1;
         makeMarker(
           MAIN_TITLE,
-          ITEMCNTNTS,
           RPRSNTV_MENU,
           MAIN_IMG_THUMB,
           LAT,
-          LNG
+          LNG,
+          ADDR1
         );
       })
     };
