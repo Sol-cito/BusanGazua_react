@@ -45,6 +45,10 @@
     margin-top: 10%;
 }
 
+.errorMessage{
+    text-align: center;
+}
+
 @media screen and (min-width: 501px) and (max-width: 1000px){
     .viewContainer{
         margin-top: 100px;
